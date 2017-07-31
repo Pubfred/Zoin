@@ -67,6 +67,29 @@ install/strip/fast: install/strip
 
 .PHONY : install/strip/fast
 
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -110,39 +133,16 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
 # The main all target
 all: cmake_check_build_system
-	cd /root/sumozeon && $(CMAKE_COMMAND) -E cmake_progress_start /root/sumozeon/CMakeFiles /root/sumozeon/external/db_drivers/liblmdb/CMakeFiles/progress.marks
-	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 external/db_drivers/liblmdb/all
+	cd /root/sumozeon && $(CMAKE_COMMAND) -E cmake_progress_start /root/sumozeon/CMakeFiles /root/sumozeon/src/cryptonote_protocol/CMakeFiles/progress.marks
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 src/cryptonote_protocol/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /root/sumozeon/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 external/db_drivers/liblmdb/clean
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 src/cryptonote_protocol/clean
 .PHONY : clean
 
 # The main clean target
@@ -152,12 +152,12 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 external/db_drivers/liblmdb/preinstall
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 src/cryptonote_protocol/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 external/db_drivers/liblmdb/preinstall
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 src/cryptonote_protocol/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
@@ -166,73 +166,61 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/rule:
-	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/rule
-.PHONY : external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/rule
+src/cryptonote_protocol/CMakeFiles/cryptonote_protocol.dir/rule:
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 src/cryptonote_protocol/CMakeFiles/cryptonote_protocol.dir/rule
+.PHONY : src/cryptonote_protocol/CMakeFiles/cryptonote_protocol.dir/rule
 
 # Convenience name for target.
-lmdb: external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/rule
+cryptonote_protocol: src/cryptonote_protocol/CMakeFiles/cryptonote_protocol.dir/rule
 
-.PHONY : lmdb
+.PHONY : cryptonote_protocol
 
 # fast build rule for target.
-lmdb/fast:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build
-.PHONY : lmdb/fast
+cryptonote_protocol/fast:
+	cd /root/sumozeon && $(MAKE) -f src/cryptonote_protocol/CMakeFiles/cryptonote_protocol.dir/build.make src/cryptonote_protocol/CMakeFiles/cryptonote_protocol.dir/build
+.PHONY : cryptonote_protocol/fast
 
-mdb.o: mdb.c.o
+# Convenience name for target.
+src/cryptonote_protocol/CMakeFiles/obj_cryptonote_protocol.dir/rule:
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 src/cryptonote_protocol/CMakeFiles/obj_cryptonote_protocol.dir/rule
+.PHONY : src/cryptonote_protocol/CMakeFiles/obj_cryptonote_protocol.dir/rule
 
-.PHONY : mdb.o
+# Convenience name for target.
+obj_cryptonote_protocol: src/cryptonote_protocol/CMakeFiles/obj_cryptonote_protocol.dir/rule
 
-# target to build an object file
-mdb.c.o:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/mdb.c.o
-.PHONY : mdb.c.o
+.PHONY : obj_cryptonote_protocol
 
-mdb.i: mdb.c.i
+# fast build rule for target.
+obj_cryptonote_protocol/fast:
+	cd /root/sumozeon && $(MAKE) -f src/cryptonote_protocol/CMakeFiles/obj_cryptonote_protocol.dir/build.make src/cryptonote_protocol/CMakeFiles/obj_cryptonote_protocol.dir/build
+.PHONY : obj_cryptonote_protocol/fast
 
-.PHONY : mdb.i
+cryptonote_protocol_handler-base.o: cryptonote_protocol_handler-base.cpp.o
 
-# target to preprocess a source file
-mdb.c.i:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/mdb.c.i
-.PHONY : mdb.c.i
-
-mdb.s: mdb.c.s
-
-.PHONY : mdb.s
-
-# target to generate assembly for a file
-mdb.c.s:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/mdb.c.s
-.PHONY : mdb.c.s
-
-midl.o: midl.c.o
-
-.PHONY : midl.o
+.PHONY : cryptonote_protocol_handler-base.o
 
 # target to build an object file
-midl.c.o:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/midl.c.o
-.PHONY : midl.c.o
+cryptonote_protocol_handler-base.cpp.o:
+	cd /root/sumozeon && $(MAKE) -f src/cryptonote_protocol/CMakeFiles/obj_cryptonote_protocol.dir/build.make src/cryptonote_protocol/CMakeFiles/obj_cryptonote_protocol.dir/cryptonote_protocol_handler-base.cpp.o
+.PHONY : cryptonote_protocol_handler-base.cpp.o
 
-midl.i: midl.c.i
+cryptonote_protocol_handler-base.i: cryptonote_protocol_handler-base.cpp.i
 
-.PHONY : midl.i
+.PHONY : cryptonote_protocol_handler-base.i
 
 # target to preprocess a source file
-midl.c.i:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/midl.c.i
-.PHONY : midl.c.i
+cryptonote_protocol_handler-base.cpp.i:
+	cd /root/sumozeon && $(MAKE) -f src/cryptonote_protocol/CMakeFiles/obj_cryptonote_protocol.dir/build.make src/cryptonote_protocol/CMakeFiles/obj_cryptonote_protocol.dir/cryptonote_protocol_handler-base.cpp.i
+.PHONY : cryptonote_protocol_handler-base.cpp.i
 
-midl.s: midl.c.s
+cryptonote_protocol_handler-base.s: cryptonote_protocol_handler-base.cpp.s
 
-.PHONY : midl.s
+.PHONY : cryptonote_protocol_handler-base.s
 
 # target to generate assembly for a file
-midl.c.s:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/midl.c.s
-.PHONY : midl.c.s
+cryptonote_protocol_handler-base.cpp.s:
+	cd /root/sumozeon && $(MAKE) -f src/cryptonote_protocol/CMakeFiles/obj_cryptonote_protocol.dir/build.make src/cryptonote_protocol/CMakeFiles/obj_cryptonote_protocol.dir/cryptonote_protocol_handler-base.cpp.s
+.PHONY : cryptonote_protocol_handler-base.cpp.s
 
 # Help Target
 help:
@@ -241,19 +229,17 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install/strip"
+	@echo "... install"
+	@echo "... cryptonote_protocol"
+	@echo "... rebuild_cache"
+	@echo "... obj_cryptonote_protocol"
 	@echo "... install/local"
 	@echo "... test"
 	@echo "... list_install_components"
-	@echo "... lmdb"
 	@echo "... edit_cache"
-	@echo "... rebuild_cache"
-	@echo "... install"
-	@echo "... mdb.o"
-	@echo "... mdb.i"
-	@echo "... mdb.s"
-	@echo "... midl.o"
-	@echo "... midl.i"
-	@echo "... midl.s"
+	@echo "... cryptonote_protocol_handler-base.o"
+	@echo "... cryptonote_protocol_handler-base.i"
+	@echo "... cryptonote_protocol_handler-base.s"
 .PHONY : help
 
 

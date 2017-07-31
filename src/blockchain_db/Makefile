@@ -67,6 +67,18 @@ install/strip/fast: install/strip
 
 .PHONY : install/strip/fast
 
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -121,28 +133,16 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
 # The main all target
 all: cmake_check_build_system
-	cd /root/sumozeon && $(CMAKE_COMMAND) -E cmake_progress_start /root/sumozeon/CMakeFiles /root/sumozeon/external/db_drivers/liblmdb/CMakeFiles/progress.marks
-	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 external/db_drivers/liblmdb/all
+	cd /root/sumozeon && $(CMAKE_COMMAND) -E cmake_progress_start /root/sumozeon/CMakeFiles /root/sumozeon/src/blockchain_db/CMakeFiles/progress.marks
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 src/blockchain_db/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /root/sumozeon/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 external/db_drivers/liblmdb/clean
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 src/blockchain_db/clean
 .PHONY : clean
 
 # The main clean target
@@ -152,12 +152,12 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 external/db_drivers/liblmdb/preinstall
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 src/blockchain_db/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 external/db_drivers/liblmdb/preinstall
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 src/blockchain_db/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
@@ -166,73 +166,88 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/rule:
-	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/rule
-.PHONY : external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/rule
+src/blockchain_db/CMakeFiles/blockchain_db.dir/rule:
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 src/blockchain_db/CMakeFiles/blockchain_db.dir/rule
+.PHONY : src/blockchain_db/CMakeFiles/blockchain_db.dir/rule
 
 # Convenience name for target.
-lmdb: external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/rule
+blockchain_db: src/blockchain_db/CMakeFiles/blockchain_db.dir/rule
 
-.PHONY : lmdb
+.PHONY : blockchain_db
 
 # fast build rule for target.
-lmdb/fast:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build
-.PHONY : lmdb/fast
+blockchain_db/fast:
+	cd /root/sumozeon && $(MAKE) -f src/blockchain_db/CMakeFiles/blockchain_db.dir/build.make src/blockchain_db/CMakeFiles/blockchain_db.dir/build
+.PHONY : blockchain_db/fast
 
-mdb.o: mdb.c.o
+# Convenience name for target.
+src/blockchain_db/CMakeFiles/obj_blockchain_db.dir/rule:
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 src/blockchain_db/CMakeFiles/obj_blockchain_db.dir/rule
+.PHONY : src/blockchain_db/CMakeFiles/obj_blockchain_db.dir/rule
 
-.PHONY : mdb.o
+# Convenience name for target.
+obj_blockchain_db: src/blockchain_db/CMakeFiles/obj_blockchain_db.dir/rule
 
-# target to build an object file
-mdb.c.o:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/mdb.c.o
-.PHONY : mdb.c.o
+.PHONY : obj_blockchain_db
 
-mdb.i: mdb.c.i
+# fast build rule for target.
+obj_blockchain_db/fast:
+	cd /root/sumozeon && $(MAKE) -f src/blockchain_db/CMakeFiles/obj_blockchain_db.dir/build.make src/blockchain_db/CMakeFiles/obj_blockchain_db.dir/build
+.PHONY : obj_blockchain_db/fast
 
-.PHONY : mdb.i
+blockchain_db.o: blockchain_db.cpp.o
 
-# target to preprocess a source file
-mdb.c.i:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/mdb.c.i
-.PHONY : mdb.c.i
-
-mdb.s: mdb.c.s
-
-.PHONY : mdb.s
-
-# target to generate assembly for a file
-mdb.c.s:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/mdb.c.s
-.PHONY : mdb.c.s
-
-midl.o: midl.c.o
-
-.PHONY : midl.o
+.PHONY : blockchain_db.o
 
 # target to build an object file
-midl.c.o:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/midl.c.o
-.PHONY : midl.c.o
+blockchain_db.cpp.o:
+	cd /root/sumozeon && $(MAKE) -f src/blockchain_db/CMakeFiles/obj_blockchain_db.dir/build.make src/blockchain_db/CMakeFiles/obj_blockchain_db.dir/blockchain_db.cpp.o
+.PHONY : blockchain_db.cpp.o
 
-midl.i: midl.c.i
+blockchain_db.i: blockchain_db.cpp.i
 
-.PHONY : midl.i
+.PHONY : blockchain_db.i
 
 # target to preprocess a source file
-midl.c.i:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/midl.c.i
-.PHONY : midl.c.i
+blockchain_db.cpp.i:
+	cd /root/sumozeon && $(MAKE) -f src/blockchain_db/CMakeFiles/obj_blockchain_db.dir/build.make src/blockchain_db/CMakeFiles/obj_blockchain_db.dir/blockchain_db.cpp.i
+.PHONY : blockchain_db.cpp.i
 
-midl.s: midl.c.s
+blockchain_db.s: blockchain_db.cpp.s
 
-.PHONY : midl.s
+.PHONY : blockchain_db.s
 
 # target to generate assembly for a file
-midl.c.s:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/midl.c.s
-.PHONY : midl.c.s
+blockchain_db.cpp.s:
+	cd /root/sumozeon && $(MAKE) -f src/blockchain_db/CMakeFiles/obj_blockchain_db.dir/build.make src/blockchain_db/CMakeFiles/obj_blockchain_db.dir/blockchain_db.cpp.s
+.PHONY : blockchain_db.cpp.s
+
+lmdb/db_lmdb.o: lmdb/db_lmdb.cpp.o
+
+.PHONY : lmdb/db_lmdb.o
+
+# target to build an object file
+lmdb/db_lmdb.cpp.o:
+	cd /root/sumozeon && $(MAKE) -f src/blockchain_db/CMakeFiles/obj_blockchain_db.dir/build.make src/blockchain_db/CMakeFiles/obj_blockchain_db.dir/lmdb/db_lmdb.cpp.o
+.PHONY : lmdb/db_lmdb.cpp.o
+
+lmdb/db_lmdb.i: lmdb/db_lmdb.cpp.i
+
+.PHONY : lmdb/db_lmdb.i
+
+# target to preprocess a source file
+lmdb/db_lmdb.cpp.i:
+	cd /root/sumozeon && $(MAKE) -f src/blockchain_db/CMakeFiles/obj_blockchain_db.dir/build.make src/blockchain_db/CMakeFiles/obj_blockchain_db.dir/lmdb/db_lmdb.cpp.i
+.PHONY : lmdb/db_lmdb.cpp.i
+
+lmdb/db_lmdb.s: lmdb/db_lmdb.cpp.s
+
+.PHONY : lmdb/db_lmdb.s
+
+# target to generate assembly for a file
+lmdb/db_lmdb.cpp.s:
+	cd /root/sumozeon && $(MAKE) -f src/blockchain_db/CMakeFiles/obj_blockchain_db.dir/build.make src/blockchain_db/CMakeFiles/obj_blockchain_db.dir/lmdb/db_lmdb.cpp.s
+.PHONY : lmdb/db_lmdb.cpp.s
 
 # Help Target
 help:
@@ -241,19 +256,20 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install/strip"
+	@echo "... install"
+	@echo "... blockchain_db"
 	@echo "... install/local"
 	@echo "... test"
+	@echo "... obj_blockchain_db"
 	@echo "... list_install_components"
-	@echo "... lmdb"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... install"
-	@echo "... mdb.o"
-	@echo "... mdb.i"
-	@echo "... mdb.s"
-	@echo "... midl.o"
-	@echo "... midl.i"
-	@echo "... midl.s"
+	@echo "... blockchain_db.o"
+	@echo "... blockchain_db.i"
+	@echo "... blockchain_db.s"
+	@echo "... lmdb/db_lmdb.o"
+	@echo "... lmdb/db_lmdb.i"
+	@echo "... lmdb/db_lmdb.s"
 .PHONY : help
 
 

@@ -67,6 +67,29 @@ install/strip/fast: install/strip
 
 .PHONY : install/strip/fast
 
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -110,39 +133,16 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
 # The main all target
 all: cmake_check_build_system
-	cd /root/sumozeon && $(CMAKE_COMMAND) -E cmake_progress_start /root/sumozeon/CMakeFiles /root/sumozeon/external/db_drivers/liblmdb/CMakeFiles/progress.marks
-	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 external/db_drivers/liblmdb/all
+	cd /root/sumozeon && $(CMAKE_COMMAND) -E cmake_progress_start /root/sumozeon/CMakeFiles /root/sumozeon/src/rpc/CMakeFiles/progress.marks
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 src/rpc/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /root/sumozeon/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 external/db_drivers/liblmdb/clean
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 src/rpc/clean
 .PHONY : clean
 
 # The main clean target
@@ -152,12 +152,12 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 external/db_drivers/liblmdb/preinstall
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 src/rpc/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 external/db_drivers/liblmdb/preinstall
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 src/rpc/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
@@ -166,73 +166,61 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/rule:
-	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/rule
-.PHONY : external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/rule
+src/rpc/CMakeFiles/rpc.dir/rule:
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 src/rpc/CMakeFiles/rpc.dir/rule
+.PHONY : src/rpc/CMakeFiles/rpc.dir/rule
 
 # Convenience name for target.
-lmdb: external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/rule
+rpc: src/rpc/CMakeFiles/rpc.dir/rule
 
-.PHONY : lmdb
+.PHONY : rpc
 
 # fast build rule for target.
-lmdb/fast:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build
-.PHONY : lmdb/fast
+rpc/fast:
+	cd /root/sumozeon && $(MAKE) -f src/rpc/CMakeFiles/rpc.dir/build.make src/rpc/CMakeFiles/rpc.dir/build
+.PHONY : rpc/fast
 
-mdb.o: mdb.c.o
+# Convenience name for target.
+src/rpc/CMakeFiles/obj_rpc.dir/rule:
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 src/rpc/CMakeFiles/obj_rpc.dir/rule
+.PHONY : src/rpc/CMakeFiles/obj_rpc.dir/rule
 
-.PHONY : mdb.o
+# Convenience name for target.
+obj_rpc: src/rpc/CMakeFiles/obj_rpc.dir/rule
 
-# target to build an object file
-mdb.c.o:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/mdb.c.o
-.PHONY : mdb.c.o
+.PHONY : obj_rpc
 
-mdb.i: mdb.c.i
+# fast build rule for target.
+obj_rpc/fast:
+	cd /root/sumozeon && $(MAKE) -f src/rpc/CMakeFiles/obj_rpc.dir/build.make src/rpc/CMakeFiles/obj_rpc.dir/build
+.PHONY : obj_rpc/fast
 
-.PHONY : mdb.i
+core_rpc_server.o: core_rpc_server.cpp.o
 
-# target to preprocess a source file
-mdb.c.i:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/mdb.c.i
-.PHONY : mdb.c.i
-
-mdb.s: mdb.c.s
-
-.PHONY : mdb.s
-
-# target to generate assembly for a file
-mdb.c.s:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/mdb.c.s
-.PHONY : mdb.c.s
-
-midl.o: midl.c.o
-
-.PHONY : midl.o
+.PHONY : core_rpc_server.o
 
 # target to build an object file
-midl.c.o:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/midl.c.o
-.PHONY : midl.c.o
+core_rpc_server.cpp.o:
+	cd /root/sumozeon && $(MAKE) -f src/rpc/CMakeFiles/obj_rpc.dir/build.make src/rpc/CMakeFiles/obj_rpc.dir/core_rpc_server.cpp.o
+.PHONY : core_rpc_server.cpp.o
 
-midl.i: midl.c.i
+core_rpc_server.i: core_rpc_server.cpp.i
 
-.PHONY : midl.i
+.PHONY : core_rpc_server.i
 
 # target to preprocess a source file
-midl.c.i:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/midl.c.i
-.PHONY : midl.c.i
+core_rpc_server.cpp.i:
+	cd /root/sumozeon && $(MAKE) -f src/rpc/CMakeFiles/obj_rpc.dir/build.make src/rpc/CMakeFiles/obj_rpc.dir/core_rpc_server.cpp.i
+.PHONY : core_rpc_server.cpp.i
 
-midl.s: midl.c.s
+core_rpc_server.s: core_rpc_server.cpp.s
 
-.PHONY : midl.s
+.PHONY : core_rpc_server.s
 
 # target to generate assembly for a file
-midl.c.s:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/midl.c.s
-.PHONY : midl.c.s
+core_rpc_server.cpp.s:
+	cd /root/sumozeon && $(MAKE) -f src/rpc/CMakeFiles/obj_rpc.dir/build.make src/rpc/CMakeFiles/obj_rpc.dir/core_rpc_server.cpp.s
+.PHONY : core_rpc_server.cpp.s
 
 # Help Target
 help:
@@ -241,19 +229,17 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install/strip"
+	@echo "... install"
+	@echo "... rpc"
+	@echo "... rebuild_cache"
 	@echo "... install/local"
 	@echo "... test"
 	@echo "... list_install_components"
-	@echo "... lmdb"
+	@echo "... obj_rpc"
 	@echo "... edit_cache"
-	@echo "... rebuild_cache"
-	@echo "... install"
-	@echo "... mdb.o"
-	@echo "... mdb.i"
-	@echo "... mdb.s"
-	@echo "... midl.o"
-	@echo "... midl.i"
-	@echo "... midl.s"
+	@echo "... core_rpc_server.o"
+	@echo "... core_rpc_server.i"
+	@echo "... core_rpc_server.s"
 .PHONY : help
 
 

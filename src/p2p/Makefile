@@ -67,6 +67,18 @@ install/strip/fast: install/strip
 
 .PHONY : install/strip/fast
 
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -121,28 +133,16 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
 # The main all target
 all: cmake_check_build_system
-	cd /root/sumozeon && $(CMAKE_COMMAND) -E cmake_progress_start /root/sumozeon/CMakeFiles /root/sumozeon/external/db_drivers/liblmdb/CMakeFiles/progress.marks
-	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 external/db_drivers/liblmdb/all
+	cd /root/sumozeon && $(CMAKE_COMMAND) -E cmake_progress_start /root/sumozeon/CMakeFiles /root/sumozeon/src/p2p/CMakeFiles/progress.marks
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 src/p2p/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /root/sumozeon/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 external/db_drivers/liblmdb/clean
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 src/p2p/clean
 .PHONY : clean
 
 # The main clean target
@@ -152,12 +152,12 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 external/db_drivers/liblmdb/preinstall
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 src/p2p/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 external/db_drivers/liblmdb/preinstall
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 src/p2p/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
@@ -166,73 +166,115 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/rule:
-	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/rule
-.PHONY : external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/rule
+src/p2p/CMakeFiles/p2p.dir/rule:
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 src/p2p/CMakeFiles/p2p.dir/rule
+.PHONY : src/p2p/CMakeFiles/p2p.dir/rule
 
 # Convenience name for target.
-lmdb: external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/rule
+p2p: src/p2p/CMakeFiles/p2p.dir/rule
 
-.PHONY : lmdb
+.PHONY : p2p
 
 # fast build rule for target.
-lmdb/fast:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build
-.PHONY : lmdb/fast
+p2p/fast:
+	cd /root/sumozeon && $(MAKE) -f src/p2p/CMakeFiles/p2p.dir/build.make src/p2p/CMakeFiles/p2p.dir/build
+.PHONY : p2p/fast
 
-mdb.o: mdb.c.o
+# Convenience name for target.
+src/p2p/CMakeFiles/obj_p2p.dir/rule:
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 src/p2p/CMakeFiles/obj_p2p.dir/rule
+.PHONY : src/p2p/CMakeFiles/obj_p2p.dir/rule
 
-.PHONY : mdb.o
+# Convenience name for target.
+obj_p2p: src/p2p/CMakeFiles/obj_p2p.dir/rule
 
-# target to build an object file
-mdb.c.o:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/mdb.c.o
-.PHONY : mdb.c.o
+.PHONY : obj_p2p
 
-mdb.i: mdb.c.i
+# fast build rule for target.
+obj_p2p/fast:
+	cd /root/sumozeon && $(MAKE) -f src/p2p/CMakeFiles/obj_p2p.dir/build.make src/p2p/CMakeFiles/obj_p2p.dir/build
+.PHONY : obj_p2p/fast
 
-.PHONY : mdb.i
+connection_basic.o: connection_basic.cpp.o
 
-# target to preprocess a source file
-mdb.c.i:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/mdb.c.i
-.PHONY : mdb.c.i
-
-mdb.s: mdb.c.s
-
-.PHONY : mdb.s
-
-# target to generate assembly for a file
-mdb.c.s:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/mdb.c.s
-.PHONY : mdb.c.s
-
-midl.o: midl.c.o
-
-.PHONY : midl.o
+.PHONY : connection_basic.o
 
 # target to build an object file
-midl.c.o:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/midl.c.o
-.PHONY : midl.c.o
+connection_basic.cpp.o:
+	cd /root/sumozeon && $(MAKE) -f src/p2p/CMakeFiles/obj_p2p.dir/build.make src/p2p/CMakeFiles/obj_p2p.dir/connection_basic.cpp.o
+.PHONY : connection_basic.cpp.o
 
-midl.i: midl.c.i
+connection_basic.i: connection_basic.cpp.i
 
-.PHONY : midl.i
+.PHONY : connection_basic.i
 
 # target to preprocess a source file
-midl.c.i:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/midl.c.i
-.PHONY : midl.c.i
+connection_basic.cpp.i:
+	cd /root/sumozeon && $(MAKE) -f src/p2p/CMakeFiles/obj_p2p.dir/build.make src/p2p/CMakeFiles/obj_p2p.dir/connection_basic.cpp.i
+.PHONY : connection_basic.cpp.i
 
-midl.s: midl.c.s
+connection_basic.s: connection_basic.cpp.s
 
-.PHONY : midl.s
+.PHONY : connection_basic.s
 
 # target to generate assembly for a file
-midl.c.s:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/midl.c.s
-.PHONY : midl.c.s
+connection_basic.cpp.s:
+	cd /root/sumozeon && $(MAKE) -f src/p2p/CMakeFiles/obj_p2p.dir/build.make src/p2p/CMakeFiles/obj_p2p.dir/connection_basic.cpp.s
+.PHONY : connection_basic.cpp.s
+
+network_throttle-detail.o: network_throttle-detail.cpp.o
+
+.PHONY : network_throttle-detail.o
+
+# target to build an object file
+network_throttle-detail.cpp.o:
+	cd /root/sumozeon && $(MAKE) -f src/p2p/CMakeFiles/obj_p2p.dir/build.make src/p2p/CMakeFiles/obj_p2p.dir/network_throttle-detail.cpp.o
+.PHONY : network_throttle-detail.cpp.o
+
+network_throttle-detail.i: network_throttle-detail.cpp.i
+
+.PHONY : network_throttle-detail.i
+
+# target to preprocess a source file
+network_throttle-detail.cpp.i:
+	cd /root/sumozeon && $(MAKE) -f src/p2p/CMakeFiles/obj_p2p.dir/build.make src/p2p/CMakeFiles/obj_p2p.dir/network_throttle-detail.cpp.i
+.PHONY : network_throttle-detail.cpp.i
+
+network_throttle-detail.s: network_throttle-detail.cpp.s
+
+.PHONY : network_throttle-detail.s
+
+# target to generate assembly for a file
+network_throttle-detail.cpp.s:
+	cd /root/sumozeon && $(MAKE) -f src/p2p/CMakeFiles/obj_p2p.dir/build.make src/p2p/CMakeFiles/obj_p2p.dir/network_throttle-detail.cpp.s
+.PHONY : network_throttle-detail.cpp.s
+
+network_throttle.o: network_throttle.cpp.o
+
+.PHONY : network_throttle.o
+
+# target to build an object file
+network_throttle.cpp.o:
+	cd /root/sumozeon && $(MAKE) -f src/p2p/CMakeFiles/obj_p2p.dir/build.make src/p2p/CMakeFiles/obj_p2p.dir/network_throttle.cpp.o
+.PHONY : network_throttle.cpp.o
+
+network_throttle.i: network_throttle.cpp.i
+
+.PHONY : network_throttle.i
+
+# target to preprocess a source file
+network_throttle.cpp.i:
+	cd /root/sumozeon && $(MAKE) -f src/p2p/CMakeFiles/obj_p2p.dir/build.make src/p2p/CMakeFiles/obj_p2p.dir/network_throttle.cpp.i
+.PHONY : network_throttle.cpp.i
+
+network_throttle.s: network_throttle.cpp.s
+
+.PHONY : network_throttle.s
+
+# target to generate assembly for a file
+network_throttle.cpp.s:
+	cd /root/sumozeon && $(MAKE) -f src/p2p/CMakeFiles/obj_p2p.dir/build.make src/p2p/CMakeFiles/obj_p2p.dir/network_throttle.cpp.s
+.PHONY : network_throttle.cpp.s
 
 # Help Target
 help:
@@ -241,19 +283,23 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install/strip"
+	@echo "... install"
+	@echo "... p2p"
 	@echo "... install/local"
 	@echo "... test"
 	@echo "... list_install_components"
-	@echo "... lmdb"
+	@echo "... obj_p2p"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... install"
-	@echo "... mdb.o"
-	@echo "... mdb.i"
-	@echo "... mdb.s"
-	@echo "... midl.o"
-	@echo "... midl.i"
-	@echo "... midl.s"
+	@echo "... connection_basic.o"
+	@echo "... connection_basic.i"
+	@echo "... connection_basic.s"
+	@echo "... network_throttle-detail.o"
+	@echo "... network_throttle-detail.i"
+	@echo "... network_throttle-detail.s"
+	@echo "... network_throttle.o"
+	@echo "... network_throttle.i"
+	@echo "... network_throttle.s"
 .PHONY : help
 
 

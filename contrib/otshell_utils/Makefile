@@ -135,14 +135,14 @@ install/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /root/sumozeon && $(CMAKE_COMMAND) -E cmake_progress_start /root/sumozeon/CMakeFiles /root/sumozeon/external/db_drivers/liblmdb/CMakeFiles/progress.marks
-	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 external/db_drivers/liblmdb/all
+	cd /root/sumozeon && $(CMAKE_COMMAND) -E cmake_progress_start /root/sumozeon/CMakeFiles /root/sumozeon/contrib/otshell_utils/CMakeFiles/progress.marks
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 contrib/otshell_utils/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /root/sumozeon/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 external/db_drivers/liblmdb/clean
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 contrib/otshell_utils/clean
 .PHONY : clean
 
 # The main clean target
@@ -152,12 +152,12 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 external/db_drivers/liblmdb/preinstall
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 contrib/otshell_utils/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 external/db_drivers/liblmdb/preinstall
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 contrib/otshell_utils/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
@@ -166,73 +166,127 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/rule:
-	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/rule
-.PHONY : external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/rule
+contrib/otshell_utils/CMakeFiles/otshell_utils.dir/rule:
+	cd /root/sumozeon && $(MAKE) -f CMakeFiles/Makefile2 contrib/otshell_utils/CMakeFiles/otshell_utils.dir/rule
+.PHONY : contrib/otshell_utils/CMakeFiles/otshell_utils.dir/rule
 
 # Convenience name for target.
-lmdb: external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/rule
+otshell_utils: contrib/otshell_utils/CMakeFiles/otshell_utils.dir/rule
 
-.PHONY : lmdb
+.PHONY : otshell_utils
 
 # fast build rule for target.
-lmdb/fast:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build
-.PHONY : lmdb/fast
+otshell_utils/fast:
+	cd /root/sumozeon && $(MAKE) -f contrib/otshell_utils/CMakeFiles/otshell_utils.dir/build.make contrib/otshell_utils/CMakeFiles/otshell_utils.dir/build
+.PHONY : otshell_utils/fast
 
-mdb.o: mdb.c.o
+ccolor.o: ccolor.cpp.o
 
-.PHONY : mdb.o
-
-# target to build an object file
-mdb.c.o:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/mdb.c.o
-.PHONY : mdb.c.o
-
-mdb.i: mdb.c.i
-
-.PHONY : mdb.i
-
-# target to preprocess a source file
-mdb.c.i:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/mdb.c.i
-.PHONY : mdb.c.i
-
-mdb.s: mdb.c.s
-
-.PHONY : mdb.s
-
-# target to generate assembly for a file
-mdb.c.s:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/mdb.c.s
-.PHONY : mdb.c.s
-
-midl.o: midl.c.o
-
-.PHONY : midl.o
+.PHONY : ccolor.o
 
 # target to build an object file
-midl.c.o:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/midl.c.o
-.PHONY : midl.c.o
+ccolor.cpp.o:
+	cd /root/sumozeon && $(MAKE) -f contrib/otshell_utils/CMakeFiles/otshell_utils.dir/build.make contrib/otshell_utils/CMakeFiles/otshell_utils.dir/ccolor.cpp.o
+.PHONY : ccolor.cpp.o
 
-midl.i: midl.c.i
+ccolor.i: ccolor.cpp.i
 
-.PHONY : midl.i
+.PHONY : ccolor.i
 
 # target to preprocess a source file
-midl.c.i:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/midl.c.i
-.PHONY : midl.c.i
+ccolor.cpp.i:
+	cd /root/sumozeon && $(MAKE) -f contrib/otshell_utils/CMakeFiles/otshell_utils.dir/build.make contrib/otshell_utils/CMakeFiles/otshell_utils.dir/ccolor.cpp.i
+.PHONY : ccolor.cpp.i
 
-midl.s: midl.c.s
+ccolor.s: ccolor.cpp.s
 
-.PHONY : midl.s
+.PHONY : ccolor.s
 
 # target to generate assembly for a file
-midl.c.s:
-	cd /root/sumozeon && $(MAKE) -f external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/build.make external/db_drivers/liblmdb/CMakeFiles/lmdb.dir/midl.c.s
-.PHONY : midl.c.s
+ccolor.cpp.s:
+	cd /root/sumozeon && $(MAKE) -f contrib/otshell_utils/CMakeFiles/otshell_utils.dir/build.make contrib/otshell_utils/CMakeFiles/otshell_utils.dir/ccolor.cpp.s
+.PHONY : ccolor.cpp.s
+
+runoptions.o: runoptions.cpp.o
+
+.PHONY : runoptions.o
+
+# target to build an object file
+runoptions.cpp.o:
+	cd /root/sumozeon && $(MAKE) -f contrib/otshell_utils/CMakeFiles/otshell_utils.dir/build.make contrib/otshell_utils/CMakeFiles/otshell_utils.dir/runoptions.cpp.o
+.PHONY : runoptions.cpp.o
+
+runoptions.i: runoptions.cpp.i
+
+.PHONY : runoptions.i
+
+# target to preprocess a source file
+runoptions.cpp.i:
+	cd /root/sumozeon && $(MAKE) -f contrib/otshell_utils/CMakeFiles/otshell_utils.dir/build.make contrib/otshell_utils/CMakeFiles/otshell_utils.dir/runoptions.cpp.i
+.PHONY : runoptions.cpp.i
+
+runoptions.s: runoptions.cpp.s
+
+.PHONY : runoptions.s
+
+# target to generate assembly for a file
+runoptions.cpp.s:
+	cd /root/sumozeon && $(MAKE) -f contrib/otshell_utils/CMakeFiles/otshell_utils.dir/build.make contrib/otshell_utils/CMakeFiles/otshell_utils.dir/runoptions.cpp.s
+.PHONY : runoptions.cpp.s
+
+utils.o: utils.cpp.o
+
+.PHONY : utils.o
+
+# target to build an object file
+utils.cpp.o:
+	cd /root/sumozeon && $(MAKE) -f contrib/otshell_utils/CMakeFiles/otshell_utils.dir/build.make contrib/otshell_utils/CMakeFiles/otshell_utils.dir/utils.cpp.o
+.PHONY : utils.cpp.o
+
+utils.i: utils.cpp.i
+
+.PHONY : utils.i
+
+# target to preprocess a source file
+utils.cpp.i:
+	cd /root/sumozeon && $(MAKE) -f contrib/otshell_utils/CMakeFiles/otshell_utils.dir/build.make contrib/otshell_utils/CMakeFiles/otshell_utils.dir/utils.cpp.i
+.PHONY : utils.cpp.i
+
+utils.s: utils.cpp.s
+
+.PHONY : utils.s
+
+# target to generate assembly for a file
+utils.cpp.s:
+	cd /root/sumozeon && $(MAKE) -f contrib/otshell_utils/CMakeFiles/otshell_utils.dir/build.make contrib/otshell_utils/CMakeFiles/otshell_utils.dir/utils.cpp.s
+.PHONY : utils.cpp.s
+
+windows_stream.o: windows_stream.cpp.o
+
+.PHONY : windows_stream.o
+
+# target to build an object file
+windows_stream.cpp.o:
+	cd /root/sumozeon && $(MAKE) -f contrib/otshell_utils/CMakeFiles/otshell_utils.dir/build.make contrib/otshell_utils/CMakeFiles/otshell_utils.dir/windows_stream.cpp.o
+.PHONY : windows_stream.cpp.o
+
+windows_stream.i: windows_stream.cpp.i
+
+.PHONY : windows_stream.i
+
+# target to preprocess a source file
+windows_stream.cpp.i:
+	cd /root/sumozeon && $(MAKE) -f contrib/otshell_utils/CMakeFiles/otshell_utils.dir/build.make contrib/otshell_utils/CMakeFiles/otshell_utils.dir/windows_stream.cpp.i
+.PHONY : windows_stream.cpp.i
+
+windows_stream.s: windows_stream.cpp.s
+
+.PHONY : windows_stream.s
+
+# target to generate assembly for a file
+windows_stream.cpp.s:
+	cd /root/sumozeon && $(MAKE) -f contrib/otshell_utils/CMakeFiles/otshell_utils.dir/build.make contrib/otshell_utils/CMakeFiles/otshell_utils.dir/windows_stream.cpp.s
+.PHONY : windows_stream.cpp.s
 
 # Help Target
 help:
@@ -244,16 +298,22 @@ help:
 	@echo "... install/local"
 	@echo "... test"
 	@echo "... list_install_components"
-	@echo "... lmdb"
+	@echo "... otshell_utils"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... install"
-	@echo "... mdb.o"
-	@echo "... mdb.i"
-	@echo "... mdb.s"
-	@echo "... midl.o"
-	@echo "... midl.i"
-	@echo "... midl.s"
+	@echo "... ccolor.o"
+	@echo "... ccolor.i"
+	@echo "... ccolor.s"
+	@echo "... runoptions.o"
+	@echo "... runoptions.i"
+	@echo "... runoptions.s"
+	@echo "... utils.o"
+	@echo "... utils.i"
+	@echo "... utils.s"
+	@echo "... windows_stream.o"
+	@echo "... windows_stream.i"
+	@echo "... windows_stream.s"
 .PHONY : help
 
 
